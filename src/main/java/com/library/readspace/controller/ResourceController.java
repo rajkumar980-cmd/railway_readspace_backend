@@ -150,6 +150,12 @@ public class ResourceController {
             throw e;
         }
     }
+    @GetMapping("/{id}")
+public ResponseEntity<Resource> getResourceById(@PathVariable Long id) {
+    return resourceRepository.findById(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+}
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteResource(@PathVariable Long id) {
